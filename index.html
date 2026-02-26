@@ -6,6 +6,7 @@
 <title>Jay Russell | Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 * {
@@ -90,15 +91,31 @@ header {
 
 .skill {
     background: #1f1f1f;
-    padding: 8px 14px;
-    border-radius: 20px;
+    padding: 12px 14px;
+    border-radius: 8px;
     font-size: 14px;
     border: 1px solid #2a2a2a;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: column;
+    text-align: center;
+    min-width: 80px;
+}
+
+.skill-icon {
+    font-size: 24px;
+    color: #00f5ff;
 }
 
 .skill:hover {
     background: linear-gradient(90deg, #00f5ff, #a855f7);
+    color: #000;
+    border: 1px solid #00f5ff;
+}
+
+.skill:hover .skill-icon {
     color: #000;
 }
 
@@ -153,19 +170,58 @@ footer {
 <section class="section">
     <h2>Tech Stack</h2>
     <div class="skills">
-        <span class="skill">Oracle SQL</span>
-        <span class="skill">Oracle Forms</span>
-        <span class="skill">Oracle Reports</span>
-        <span class="skill">JasperReports</span>
-        <span class="skill">VisionX</span>
-        <span class="skill">Java</span>
-        <span class="skill">C#</span>
-        <span class="skill">.NET MAUI</span>
-        <span class="skill">Firebase</span>
-        <span class="skill">Unity Engine</span>
-        <span class="skill">MySQL</span>
-        <span class="skill">IntelliJ IDEA</span>
-        <span class="skill">Git</span>
+        <span class="skill">
+            <i class="fas fa-database skill-icon"></i>
+            Oracle SQL
+        </span>
+        <span class="skill">
+            <i class="fas fa-cube skill-icon"></i>
+            Oracle Forms
+        </span>
+        <span class="skill">
+            <i class="fas fa-file-pdf skill-icon"></i>
+            Oracle Reports
+        </span>
+        <span class="skill">
+            <i class="fas fa-chart-bar skill-icon"></i>
+            JasperReports
+        </span>
+        <span class="skill">
+            <i class="fas fa-eye skill-icon"></i>
+            VisionX
+        </span>
+        <span class="skill">
+            <i class="fab fa-java skill-icon"></i>
+            Java
+        </span>
+        <span class="skill">
+            <i class="fab fa-cuttlefish skill-icon"></i>
+            C#
+        </span>
+        <span class="skill">
+            <i class="fab fa-microsoft skill-icon"></i>
+            .NET MAUI
+        </span>
+        <span class="skill">
+            <i class="fas fa-fire skill-icon"></i>
+            Firebase
+        </span>
+        <span class="skill">
+            <i class="fas fa-gamepad skill-icon"></i>
+            Unity Engine
+        </span>
+        <span class="skill">
+            <i class="fas fa-leaf skill-icon"></i>
+            MySQL
+        </span>
+        <span class="skill">
+            <i class="fas fa-laptop-code skill-icon"></i>
+            IntelliJ IDEA
+        </span>
+        <span class="skill">
+            <i class="fab fa-git-alt skill-icon"></i>
+            Git
+        </span>
     </div>
 </section>
 
