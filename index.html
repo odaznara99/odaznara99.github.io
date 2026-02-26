@@ -120,9 +120,9 @@ section {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-direction: column;
+    flex-direction: row;
     text-align: center;
-    min-width: 80px;
+    min-width: 140px;
 }
 
 .skill-icon {
@@ -132,6 +132,10 @@ section {
 
 .skill:hover {
     background: linear-gradient(90deg, #00f5ff, #a855f7);
+    color: #000;
+}
+
+.skill:hover .skill-icon {
     color: #000;
 }
 
@@ -194,19 +198,19 @@ footer {
 <section id="stack" class="fade">
     <h2>Tech Stack</h2>
     <div class="skills">
-        <span class="skill">Oracle SQL</span>
-        <span class="skill">Oracle Forms</span>
-        <span class="skill">Oracle Reports</span>
-        <span class="skill">JasperReports</span>
-        <span class="skill">VisionX</span>
-        <span class="skill">Java</span>
-        <span class="skill">C#</span>
-        <span class="skill">.NET MAUI</span>
-        <span class="skill">Firebase</span>
-        <span class="skill">Unity Engine</span>
-        <span class="skill">MySQL</span>
-        <span class="skill">IntelliJ IDEA</span>
-        <span class="skill">Git</span>
+        <span class="skill"><i class="fa-solid fa-database skill-icon"></i>Oracle SQL</span>
+        <span class="skill"><i class="fa-brands fa-wpforms skill-icon"></i>Oracle Forms</span>
+        <span class="skill"><i class="fa-solid fa-file-lines skill-icon"></i>Oracle Reports</span>
+        <span class="skill"><i class="fa-solid fa-chart-column skill-icon"></i>JasperReports</span>
+        <span class="skill"><i class="fa-solid fa-sitemap skill-icon"></i>VisionX</span>
+        <span class="skill"><i class="fa-brands fa-java skill-icon"></i>Java</span>
+        <span class="skill"><i class="fa-solid fa-code skill-icon"></i>C#</span>
+        <span class="skill"><i class="fa-solid fa-mobile-screen-button skill-icon"></i>.NET MAUI</span>
+        <span class="skill"><i class="fa-solid fa-fire skill-icon"></i>Firebase</span>
+        <span class="skill"><i class="fa-brands fa-unity skill-icon"></i>Unity Engine</span>
+        <span class="skill"><i class="fa-solid fa-server skill-icon"></i>MySQL</span>
+        <span class="skill"><i class="fa-solid fa-laptop-code skill-icon"></i>IntelliJ IDEA</span>
+        <span class="skill"><i class="fa-brands fa-git-alt skill-icon"></i>Git</span>
     </div>
 </section>
 
