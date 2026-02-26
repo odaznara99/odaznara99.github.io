@@ -3,12 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jay Russell | Portfolio</title>
+<title>Jay Russell | Creative Developer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+:root {
+    --bg: #0f0f0f;
+    --text: #f5f5f5;
+    --card: #1a1a1a;
+    --accent1: #00f5ff;
+    --accent2: #a855f7;
+}
+
+.light {
+    --bg: #ffffff;
+    --text: #111;
+    --card: #f3f3f3;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,82 +31,89 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: #0f0f0f;
-    color: #f5f5f5;
-    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.3s ease;
+    overflow-x: hidden;
 }
 
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: auto;
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
-header {
-    min-height: 100vh;
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 15px 10%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
 }
 
-.hero-title {
-    font-size: 48px;
-    font-weight: 700;
-    background: linear-gradient(90deg, #00f5ff, #a855f7);
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 14px;
+}
+
+.toggle-btn {
+    cursor: pointer;
+}
+
+section {
+    padding: 100px 10%;
+    min-height: 100vh;
+}
+
+.hero h1 {
+    font-size: 50px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.hero-subtitle {
-    margin-top: 15px;
-    font-size: 18px;
-    color: #aaa;
-}
-
-.section {
-    padding: 80px 0;
-}
-
-.section h2 {
-    font-size: 28px;
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.section h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(90deg, #00f5ff, #a855f7);
+.hero span {
+    font-size: 20px;
+    color: gray;
 }
 
 .card {
-    background: #1a1a1a;
+    background: var(--card);
     padding: 25px;
     border-radius: 12px;
     margin-bottom: 20px;
-    transition: all 0.3s ease;
-    border: 1px solid #222;
+    transition: 0.3s;
 }
 
 .card:hover {
     transform: translateY(-5px);
+}
+
+.skills span {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 5px;
+    border-radius: 20px;
+    background: var(--card);
     border: 1px solid #333;
 }
 
-.skills {
+.games {
     display: flex;
+    gap: 20px;
     flex-wrap: wrap;
-    gap: 10px;
 }
 
 .skill {
     background: #1f1f1f;
-    padding: 12px 14px;
-    border-radius: 8px;
+    padding: 8px 14px;
+    border-radius: 20px;
     font-size: 14px;
     border: 1px solid #2a2a2a;
     transition: 0.3s;
@@ -112,165 +133,171 @@ header {
 .skill:hover {
     background: linear-gradient(90deg, #00f5ff, #a855f7);
     color: #000;
-    border: 1px solid #00f5ff;
 }
 
-.skill:hover .skill-icon {
-    color: #000;
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-a {
-    color: #00f5ff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    color: black;
+    font-weight: bold;
 }
 
 footer {
     text-align: center;
-    padding: 40px 0;
-    color: #777;
-    border-top: 1px solid #222;
-    margin-top: 50px;
-}
-
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 36px;
-    }
+    padding: 40px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<canvas id="particles"></canvas>
 
-<header>
-    <h1 class="hero-title">Jay Russell</h1>
-    <p class="hero-subtitle">
-        Back-End Developer • Mobile App Developer • Unity Game Developer
-    </p>
-</header>
+<nav>
+    <div>Jay Russell</div>
+    <div>
+        <a href="#about">About</a>
+        <a href="#stack">Stack</a>
+        <a href="#projects">Projects</a>
+        <a href="#games">Games</a>
+        <a href="#contact">Contact</a>
+        <span class="toggle-btn" onclick="toggleTheme()">🌗</span>
+    </div>
+</nav>
 
-<section class="section">
+<section class="hero">
+    <h1 id="typing"></h1>
+    <span>Back-End Developer • Mobile Developer • Unity Game Developer</span>
+    <br><br>
+    <a href="resume.pdf" download>
+        <button>Download Resume</button>
+    </a>
+</section>
+
+<section id="about" class="fade">
     <h2>About Me</h2>
     <p>
-        I'm a Back-End Developer working in an enterprise environment using 
-        Oracle SQL, Forms & Reports. I specialize in system migration and 
-        modernizing legacy applications.  
-        <br><br>
-        Outside enterprise systems, I build commissioned mobile applications 
-        and create games using Unity Engine.
+        Enterprise Back-End Developer working with Oracle SQL, Forms & Reports.
+        Specialized in system migration and modernization.
+        I also develop mobile applications and build games using Unity.
     </p>
 </section>
 
-<section class="section">
+<section id="stack" class="fade">
     <h2>Tech Stack</h2>
     <div class="skills">
-        <span class="skill">
-            <i class="fas fa-database skill-icon"></i>
-            Oracle SQL
-        </span>
-        <span class="skill">
-            <i class="fas fa-cube skill-icon"></i>
-            Oracle Forms
-        </span>
-        <span class="skill">
-            <i class="fas fa-file-pdf skill-icon"></i>
-            Oracle Reports
-        </span>
-        <span class="skill">
-            <i class="fas fa-chart-bar skill-icon"></i>
-            JasperReports
-        </span>
-        <span class="skill">
-            <i class="fas fa-eye skill-icon"></i>
-            VisionX
-        </span>
-        <span class="skill">
-            <i class="fab fa-java skill-icon"></i>
-            Java
-        </span>
-        <span class="skill">
-            <i class="fab fa-cuttlefish skill-icon"></i>
-            C#
-        </span>
-        <span class="skill">
-            <i class="fab fa-microsoft skill-icon"></i>
-            .NET MAUI
-        </span>
-        <span class="skill">
-            <i class="fas fa-fire skill-icon"></i>
-            Firebase
-        </span>
-        <span class="skill">
-            <i class="fas fa-gamepad skill-icon"></i>
-            Unity Engine
-        </span>
-        <span class="skill">
-            <i class="fas fa-leaf skill-icon"></i>
-            MySQL
-        </span>
-        <span class="skill">
-            <i class="fas fa-laptop-code skill-icon"></i>
-            IntelliJ IDEA
-        </span>
-        <span class="skill">
-            <i class="fab fa-git-alt skill-icon"></i>
-            Git
-        </span>
+        <span class="skill">Oracle SQL</span>
+        <span class="skill">Oracle Forms</span>
+        <span class="skill">Oracle Reports</span>
+        <span class="skill">JasperReports</span>
+        <span class="skill">VisionX</span>
+        <span class="skill">Java</span>
+        <span class="skill">C#</span>
+        <span class="skill">.NET MAUI</span>
+        <span class="skill">Firebase</span>
+        <span class="skill">Unity Engine</span>
+        <span class="skill">MySQL</span>
+        <span class="skill">IntelliJ IDEA</span>
+        <span class="skill">Git</span>
     </div>
 </section>
 
-<section class="section">
+<section id="projects" class="fade">
     <h2>Projects</h2>
-
-    <div class="card">
-        <h3>Laundry Booking App</h3>
-        <p>Android application with Firebase backend and rider tracking system.</p>
-    </div>
-
-    <div class="card">
-        <h3>Online Grocery Store (.NET MAUI)</h3>
-        <p>Multi-role system with MySQL database integration.</p>
-    </div>
-
-    <div class="card">
-        <h3>Unity Game Projects</h3>
-        <p>
-            Explore my games here:  
-            <a href="https://odazdev.itch.io/" target="_blank">
-                odazdev.itch.io
-            </a>
-        </p>
-    </div>
-
+    <div class="card">Laundry Booking App – Firebase backend with rider tracking.</div>
+    <div class="card">Online Grocery Store (.NET MAUI) – Multi-role MySQL system.</div>
 </section>
 
-<section class="section">
+<section id="games" class="fade">
+    <h2>Game Projects</h2>
+    <div class="games">
+        <img src="images/game1.jpg" alt="Game 1">
+        <img src="images/game2.jpg" alt="Game 2">
+    </div>
+    <br>
+    <a href="https://odazdev.itch.io/" target="_blank">
+        <button>View All Games</button>
+    </a>
+</section>
+
+<section id="contact" class="fade">
     <h2>Contact</h2>
-    <p>
-        LinkedIn: 
-        <a href="https://www.linkedin.com/in/jayaranzado/" target="_blank">
-            jayaranzado
-        </a>
-    </p>
-    <p>
-        Email: 
-        <a href="mailto:jayrussell.aranzado@gmail.com">
-            jayrussell.aranzado@gmail.com
-        </a>
-    </p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/jayaranzado/" target="_blank">jayaranzado</a></p>
+    <p>Email: <a href="mailto:jayrussell.aranzado@gmail.com">jayrussell.aranzado@gmail.com</a></p>
 </section>
 
 <footer>
-    © 2026 Jay Russell • Creative Developer Portfolio
+© 2026 Jay Russell • Creative Developer Portfolio
 </footer>
 
-</div>
+<script>
+// Typing Effect
+const text = "Jay Russell";
+let i = 0;
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 100);
+    }
+}
+typing();
+
+// Fade-in Scroll
+const faders = document.querySelectorAll('.fade');
+window.addEventListener('scroll', () => {
+    faders.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+            el.classList.add('show');
+        }
+    });
+});
+
+// Dark/Light Toggle
+function toggleTheme() {
+    document.body.classList.toggle("light");
+}
+
+// Particles Background
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for (let i = 0; i < 80; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        dx: Math.random() - 0.5,
+        dy: Math.random() - 0.5
+    });
+}
+
+function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle="#444";
+        ctx.fill();
+        p.x+=p.dx;
+        p.y+=p.dy;
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
 
 </body>
 </html>
