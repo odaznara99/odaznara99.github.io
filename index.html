@@ -105,9 +105,35 @@ section {
 }
 
 .games {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
-    flex-wrap: wrap;
+}
+
+.game-card {
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #2f2f2f;
+}
+
+.game-card iframe {
+    width: 100%;
+    display: block;
+    border: 0;
+}
+
+.game-card .content {
+    padding: 18px;
+}
+
+.game-card h3 {
+    margin-bottom: 10px;
+}
+
+.game-card p {
+    color: #b8b8b8;
+    margin-bottom: 14px;
 }
 
 .skill {
@@ -223,8 +249,34 @@ footer {
 <section id="games" class="fade">
     <h2>Game Projects</h2>
     <div class="games">
-        <img src="images/game1.jpg" alt="Game 1">
-        <img src="images/game2.jpg" alt="Game 2">
+        <div class="game-card">
+            <iframe
+                src="https://itch.io/embed/3750366"
+                width="552"
+                height="167"
+                title="Red Adventures by OdazDev"
+                allowfullscreen>
+                <a href="https://odazdev.itch.io/red-adventures">Red Adventures by OdazDev</a>
+            </iframe>
+            <iframe
+                src="https://www.youtube.com/embed/XwPYC4emGkY"
+                height="340"
+                title="Red Adventures gameplay video"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+            <div class="content">
+                <h3>Red Adventures</h3>
+                <p>
+                    Featured from my itch.io page with official preview media and project details.
+                </p>
+                <a href="https://odazdev.itch.io/red-adventures" target="_blank" rel="noopener noreferrer">
+                    <button>Play on itch.io</button>
+                </a>
+            </div>
+        </div>
     </div>
     <br>
     <a href="https://odazdev.itch.io/" target="_blank">
