@@ -1,351 +1,431 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>odaz.dev | Creative Developer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-:root {
-    --bg: #0f0f0f;
-    --text: #f5f5f5;
-    --card: #1a1a1a;
-    --accent1: #00f5ff;
-    --accent2: #a855f7;
-}
-
-.light {
-    --bg: #ffffff;
-    --text: #111;
-    --card: #f3f3f3;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    transition: 0.3s ease;
-    overflow-x: hidden;
-}
-
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
-nav {
-    position: fixed;
-    width: 100%;
-    padding: 15px 10%;
-    display: flex;
-    justify-content: space-between;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-}
-
-nav a {
-    color: var(--text);
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 14px;
-}
-
-.toggle-btn {
-    cursor: pointer;
-}
-
-section {
-    padding: 100px 10%;
-    min-height: 100vh;
-}
-
-.hero h1 {
-    font-size: 50px;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero span {
-    font-size: 20px;
-    color: gray;
-}
-
-.card {
-    background: var(--card);
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.skills span {
-    display: inline-block;
-    padding: 8px 14px;
-    margin: 5px;
-    border-radius: 20px;
-    background: var(--card);
-    border: 1px solid #333;
-}
-
-.games {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
-}
-
-.game-card {
-    background: var(--card);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #2f2f2f;
-}
-
-.game-card iframe {
-    width: 100%;
-    display: block;
-    border: 0;
-}
-
-.game-card .content {
-    padding: 18px;
-}
-
-.game-card h3 {
-    margin-bottom: 10px;
-}
-
-.game-card p {
-    color: #b8b8b8;
-    margin-bottom: 14px;
-}
-
-.skill {
-    background: #1f1f1f;
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 14px;
-    border: 1px solid #2a2a2a;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-direction: row;
-    text-align: center;
-    min-width: 140px;
-}
-
-.skill-icon {
-    font-size: 24px;
-    color: #00f5ff;
-}
-
-.skill:hover {
-    background: linear-gradient(90deg, #00f5ff, #a855f7);
-    color: #000;
-}
-
-.skill:hover .skill-icon {
-    color: #000;
-}
-
-.fade.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-    color: black;
-    font-weight: bold;
-}
-
-footer {
-    text-align: center;
-    padding: 40px;
-}
-</style>
-</head>
-
-<body>
-
-<canvas id="particles"></canvas>
-
-<nav>
-    <div>odaz.dev</div>
-    <div>
-        <a href="#about">About</a>
-        <a href="#stack">Tech</a>
-        <a href="#projects">Projects</a>
-        <a href="#games">Games</a>
-        <a href="#contact">Contact</a>
-        <span class="toggle-btn" onclick="toggleTheme()">🌗</span>
-    </div>
-</nav>
-
-<section class="hero">
-    <h1 id="typing"></h1>
-    <span>Back-End Developer • Mobile Developer • Unity Game Developer</span>
-    <br><br>
-    <a href="resume.pdf" download>
-        <button>Download Resume</button>
-    </a>
-</section>
-
-<section id="about" class="fade">
-    <h2>About Me</h2>
-    <p>
-        Enterprise Back-End Developer working with Oracle SQL, Forms & Reports.
-        Specialized in system migration and modernization.
-        I also develop mobile applications and build games using Unity.
-    </p>
-</section>
-
-<section id="stack" class="fade">
-    <h2>Tech Stack</h2>
-    <div class="skills">
-        <span class="skill"><i class="fa-solid fa-database skill-icon"></i>Oracle SQL</span>
-        <span class="skill"><i class="fa-brands fa-wpforms skill-icon"></i>Oracle Forms</span>
-        <span class="skill"><i class="fa-solid fa-file-lines skill-icon"></i>Oracle Reports</span>
-        <span class="skill"><i class="fa-solid fa-chart-column skill-icon"></i>JasperReports</span>
-        <span class="skill"><i class="fa-solid fa-sitemap skill-icon"></i>VisionX</span>
-        <span class="skill"><i class="fa-brands fa-java skill-icon"></i>Java</span>
-        <span class="skill"><i class="fa-solid fa-code skill-icon"></i>C#</span>
-        <span class="skill"><i class="fa-solid fa-mobile-screen-button skill-icon"></i>.NET MAUI</span>
-        <span class="skill"><i class="fa-solid fa-fire skill-icon"></i>Firebase</span>
-        <span class="skill"><i class="fa-brands fa-unity skill-icon"></i>Unity Engine</span>
-        <span class="skill"><i class="fa-solid fa-server skill-icon"></i>MySQL</span>
-        <span class="skill"><i class="fa-solid fa-laptop-code skill-icon"></i>IntelliJ IDEA</span>
-        <span class="skill"><i class="fa-brands fa-git-alt skill-icon"></i>Git</span>
-    </div>
-</section>
-
-<section id="projects" class="fade">
-    <h2>Projects</h2>
-    <div class="card">Laundry Booking App – Firebase backend with rider tracking.</div>
-    <div class="card">Plant Inventory System (.NET MAUI) – Multi-role MySQL system.</div>
-</section>
-
-<section id="games" class="fade">
-    <h2>Game Projects</h2>
-    <div class="games">
-        <div class="game-card">
-            <iframe
-                src="https://www.youtube.com/embed/XwPYC4emGkY"
-                height="340"
-                title="Red Adventures gameplay video"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-            </iframe>
-            <div class="content">
-                <h3>Red Adventures</h3>
-                <p>
-                    Featured from my itch.io page with official preview media and project details.
-                </p>
-                <a href="https://odazdev.itch.io/red-adventures" target="_blank" rel="noopener noreferrer">
-                    <button>Play on itch.io</button>
-                </a>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jay Russell Aranzado | odaz.dev</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#2591DE',
+              lake: '#4FB7E5',
+              spray: '#70DFED',
+              dark: '#000000',
+              'dark-card': '#141414',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      /* Global Brand Blue for Strong Tags */
+      strong {
+        color: #2591de;
+        font-weight: 700;
+      }
+      .tech-card:hover {
+        background-color: #2591de;
+        color: #fff;
+        border-color: #2591de;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #141414;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #2591de;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4fb7e5;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-dark text-slate-200 font-sans antialiased overflow-x-hidden"
+  >
+    <nav
+      class="fixed w-full bg-dark/90 backdrop-blur-md border-b border-dark-card z-50"
+    >
+      <div
+        class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center"
+      >
+        <span class="font-bold text-lg tracking-tight">
+          <span class="text-white">odaz</span
+          ><span class="text-brand">.dev</span>
+        </span>
+        <div
+          class="flex space-x-3 sm:space-x-6 text-[10px] sm:text-sm font-medium text-slate-400 uppercase tracking-wider"
+        >
+          <a href="#about" class="hover:text-brand transition">About</a>
+          <a href="#tech" class="hover:text-brand transition">Tech</a>
+          <a href="#projects" class="hover:text-brand transition">Work</a>
+          <a href="#vlog" class="hover:text-brand transition">Vlog</a>
         </div>
-    </div>
-    <br>
-    <a href="https://odazdev.itch.io/" target="_blank">
-        <button>View All Games</button>
-    </a>
-</section>
+      </div>
+    </nav>
 
-<section id="contact" class="fade">
-    <h2>Contact</h2>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/jayaranzado/" target="_blank">jayaranzado</a></p>
-    <p>Email: <a href="mailto:jayrussell.aranzado@gmail.com">jayrussell.aranzado@gmail.com</a></p>
-</section>
+    <header class="pt-32 pb-16 sm:pt-48 sm:pb-24 px-6">
+      <div class="max-w-5xl mx-auto">
+        <h1
+          class="text-4xl sm:text-6xl md:text-7xl font-extrabold mb-6 tracking-tighter text-white"
+        >
+          Jay Russell Aranzado.
+        </h1>
+        <p
+          class="text-lg sm:text-xl text-slate-400 max-w-2xl leading-relaxed font-light"
+        >
+          <span class="text-brand font-bold">Back-end Developer</span>
+          specializing in building robust, scalable, 
+          and high-performance database-side applications and APIs
+        </p>
+      </div>
+    </header>
 
-<footer>
-© 2026 Jay Russell Aranzado • My Developer Portfolio
-</footer>
+    <section
+      id="about"
+      class="py-16 sm:py-24 bg-dark-card px-6 border-y border-dark-card"
+    >
+      <div
+        class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16"
+      >
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">
+            About Me
+          </h2>
+          <p class="text-slate-400 leading-relaxed mb-4 text-sm sm:text-base">
+            I specialize in Oracle Database and Server Side Applications. My focus is
+            on
+            <strong>optimization</strong>—designing systems where backend
+            components are fast, independent, and scalable.
+          </p>
+          <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+            I also make <strong>commisioned-based projects</strong> for clients, such as web, 
+            mobile, and desktop applications as my <strong>side hustle</strong> work and to 
+            have experience in multiple programming languages and frameworks.
+          </p>
+        </div>
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-white">
+            Outside Work
+          </h2>
+          <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+            I love <strong>game development</strong> on my free time.
+            But when I'm not in-front of my computer, I want to have a
+            <strong>healthy lifestyle</strong>. I enjoy working out, playing basketball, and running.
+          </p>
+        </div>
+      </div>
+    </section>
 
-<script>
-// Typing Effect
-const text = "Hello, I'm Odaz!";
-let i = 0;
-function typing() {
-    if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typing, 100);
-    }
-}
-typing();
+    <section id="tech" class="py-16 sm:py-24 px-6 bg-dark">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-xl sm:text-2xl font-bold mb-8 sm:mb-12 text-white">
+          Tech Stack
+        </h2>
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4"
+        >
+          <div
+            class="tech-card bg-dark-card border border-slate-800 p-3 sm:p-4 rounded-xl text-center transition-all duration-300 cursor-default"
+          >
+            <span class="text-xs sm:text-sm font-semibold tracking-wide"
+              >Oracle PL/SQL</span
+            >
+          </div>
+          <div
+            class="tech-card bg-dark-card border border-slate-800 p-3 sm:p-4 rounded-xl text-center transition-all duration-300 cursor-default"
+          >
+            <span class="text-sm font-semibold tracking-wide">Oracle Forms & Reports</span>
+          </div>
+          <div
+            class="tech-card bg-dark-card border border-slate-800 p-3 sm:p-4 rounded-xl text-center transition-all duration-300 cursor-default"
+          >
+            <span class="text-sm font-semibold tracking-wide">Java</span>
+          </div>
+          <div
+            class="tech-card bg-dark-card border border-slate-800 p-3 sm:p-4 rounded-xl text-center transition-all duration-300 cursor-default"
+          >
+            <span class="text-sm font-semibold tracking-wide">C#</span>
+          </div>
+          <div
+            class="tech-card bg-dark-card border border-slate-800 p-3 sm:p-4 rounded-xl text-center transition-all duration-300 cursor-default"
+          >
+            <span class="text-sm font-semibold tracking-wide">Unity Engine</span>
+          </div>
+          <div
+            class="tech-card bg-dark-card border border-slate-800 p-3 sm:p-4 rounded-xl text-center transition-all duration-300 cursor-default"
+          >
+            <span class="text-sm font-semibold tracking-wide">Python</span>
+          </div>
+          <div
+            class="tech-card bg-dark-card border border-slate-800 p-3 sm:p-4 rounded-xl text-center transition-all duration-300 cursor-default"
+          >
+            <span class="text-sm font-semibold tracking-wide">Kotlin</span>
+          </div>
+          <div
+            class="tech-card bg-dark-card border border-slate-800 p-3 sm:p-4 rounded-xl text-center transition-all duration-300 cursor-default"
+          >
+            <span class="text-sm font-semibold tracking-wide">Android Studio</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-// Fade-in Scroll
-const faders = document.querySelectorAll('.fade');
-window.addEventListener('scroll', () => {
-    faders.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
-            el.classList.add('show');
-        }
-    });
-});
+    <section
+      id="projects"
+      class="py-16 sm:py-24 px-6 bg-dark-card border-t border-slate-800"
+    >
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-xl sm:text-2xl font-bold mb-8 sm:mb-12 text-white">
+          Featured Work
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            class="group border border-slate-800 rounded-2xl overflow-hidden hover:border-brand transition-all w-full flex flex-col bg-dark"
+          >
+            <img
+              src="assets/red-adventures-preview.png"
+              alt="Red Adventures"
+              class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity"
+            />
+            <div class="p-6 sm:p-8 flex flex-col flex-grow">
+              <h3
+                class="text-lg sm:text-xl font-bold mb-3 text-white group-hover:text-brand transition-colors"
+              >
+                Red Adventures
+              </h3>
+              <p
+                class="text-slate-500 mb-6 text-xs sm:text-sm leading-relaxed flex-grow"
+              >
+                A "Mario Bros" alike game built with Unity Engine. It features a red square character navigating through various levels filled with obstacles and enemies.
+              </p>
+              <div class="flex flex-wrap gap-2 sm:gap-4 mb-6">
+                <span
+                  class="text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded"
+                  >Unity Engine</span
+                >
+                <span
+                  class="text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded"
+                  >C#</span
+                >
+                <span
+                  class="text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded"
+                  >2D Platformer Game</span
+                >
+              </div>
+              <div class="flex gap-4 pt-4 border-t border-slate-800">
+                <a
+                  href="https://odazdev.itch.io/red-adventures"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 text-slate-500 hover:text-brand transition text-sm font-medium"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M11 3a1 1 0 100 2h3.586L9.293 9.293a1 1 0 001.414 1.414L16 6.414V10a1 1 0 102 0V4a1 1 0 00-1-1h-6z"
+                    ></path>
+                    <path
+                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                    ></path>
+                  </svg>
+                  <span>Visit Site</span>
+                </a>
+                <a
+                  href="https://odazdev.itch.io/red-adventures"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 text-slate-500 hover:text-brand transition text-sm font-medium"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.545 2.914 1.209.092-.94.35-1.581.636-1.944-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.268.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.817c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.138 18.192 20 14.436 20 10.017 20 4.484 15.522 0 10 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span>View Source</span>
+                </a>
+              </div>
+            </div>
+          </div>
 
-// Dark/Light Toggle
-function toggleTheme() {
-    document.body.classList.toggle("light");
-}
+          <div
+            class="group border border-slate-800 rounded-2xl overflow-hidden hover:border-brand transition-all w-full flex flex-col bg-dark"
+          >
+            <img
+              src="assets/souls-preview.jpg"
+              alt="Souls of Hollow Vale"
+              class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity"
+            />
+            <div class="p-6 sm:p-8 flex flex-col flex-grow">
+              <h3
+                class="text-lg sm:text-xl font-bold mb-3 text-white group-hover:text-brand transition-colors"
+              >
+                Souls of Hollow Vale
+              </h3>
+              <p
+                class="text-slate-500 mb-6 text-xs sm:text-sm leading-relaxed flex-grow"
+              >
+                A soulslike game built with Unity Engine. It features a dark fantasy world where players face challenging combat, explore eerie environments, and uncover hidden secrets.
+              </p>
+              <div class="flex flex-wrap gap-2 sm:gap-4 mb-6">
+                <span
+                  class="text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded"
+                  >Unity Engine</span
+                >
+                <span
+                  class="text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded"
+                  >C#</span
+                >
+                <span
+                  class="text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded"
+                  >2D Platformer Game</span
+                >
+              </div>
+              <div class="flex gap-4 pt-4 border-t border-slate-800">
+                <a
+                  href="https://github.com/odaznara99/SoulsOfTheHollowVale"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 text-slate-500 hover:text-brand transition text-sm font-medium"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M11 3a1 1 0 100 2h3.586L9.293 9.293a1 1 0 001.414 1.414L16 6.414V10a1 1 0 102 0V4a1 1 0 00-1-1h-6z"
+                    ></path>
+                    <path
+                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                    ></path>
+                  </svg>
+                  <span>Visit Site</span>
+                </a>
+                <a
+                  href="https://github.com/odaznara99/SoulsOfTheHollowVale"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 text-slate-500 hover:text-brand transition text-sm font-medium"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.545 2.914 1.209.092-.94.35-1.581.636-1.944-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.268.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.817c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.138 18.192 20 14.436 20 10.017 20 4.484 15.522 0 10 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span>View Source</span>
+                </a>
+              </div>
+            </div>
+          </div>
 
-// Particles Background
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+          <div
+            class="group border border-slate-800 rounded-2xl overflow-hidden hover:border-brand transition-all w-full flex flex-col bg-dark"
+          >
+            <img
+              src="assets/labada-preview.jpg"
+              alt="Laundry Booking App"
+              class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity"
+            />
+            <div class="p-6 sm:p-8 flex flex-col flex-grow">
+              <h3
+                class="text-lg sm:text-xl font-bold mb-3 text-white group-hover:text-brand transition-colors"
+              >
+                Labada App
+              </h3>
+              <p
+                class="text-slate-500 mb-6 text-xs sm:text-sm leading-relaxed flex-grow"
+              >
+                A mobile app for laundry shop services. Customer can request/book laundry
+                service online to be pick-up/delivered in their address. 
+                With COD and eWallet payment method.
+              </p>
+              <div class="flex flex-wrap gap-2 sm:gap-4 mb-6">
+                <span
+                  class="text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded"
+                  >Android Studio</span
+                >
+                <span
+                  class="text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded"
+                  >XAML</span
+                >
+                <span
+                  class="text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-800 px-2 py-1 rounded"
+                  >Java</span
+                >
+              </div>
+              <div class="flex gap-4 pt-4 border-t border-slate-800">
+                <a
+                  href="https://github.com/odaznara99/LaundryApp_v1"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 text-slate-500 hover:text-brand transition text-sm font-medium"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M11 3a1 1 0 100 2h3.586L9.293 9.293a1 1 0 001.414 1.414L16 6.414V10a1 1 0 102 0V4a1 1 0 00-1-1h-6z"
+                    ></path>
+                    <path
+                      d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+                    ></path>
+                  </svg>
+                  <span>Visit Site</span>
+                </a>
+                <a
+                  href="https://github.com/odaznara99/LaundryApp_v1"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 text-slate-500 hover:text-brand transition text-sm font-medium"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.868-.013-1.703-2.782.603-3.369-1.343-3.369-1.343-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.545 2.914 1.209.092-.94.35-1.581.636-1.944-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.268.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.817c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.138 18.192 20 14.436 20 10.017 20 4.484 15.522 0 10 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span>View Source</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-let particles = [];
-for (let i = 0; i < 80; i++) {
-    particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 2,
-        dx: Math.random() - 0.5,
-        dy: Math.random() - 0.5
-    });
-}
+    <section
+      id="vlog"
+      class="py-16 sm:py-24 px-6 bg-dark border-t border-slate-800"
+    >
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-xl sm:text-2xl font-bold mb-4 text-white">
+          Recording
+        </h2>
+        <p
+          class="text-sm sm:text-base text-slate-500 mb-8 sm:mb-12 max-w-lg mx-auto leading-relaxed"
+        >
+          Currently editing my dev vlog videos into something entertaining.
+        </p>
+        <div
+          class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-slate-800 rounded-full bg-dark-card shadow-sm"
+        >
+          <span
+            class="flex h-2 w-2 rounded-full bg-brand mr-2 sm:mr-3 animate-pulse"
+          ></span>
+          <span
+            class="text-[10px] sm:text-sm font-medium text-slate-400 tracking-wide uppercase"
+            >Coming Soon</span
+          >
+        </div>
+      </div>
+    </section>
 
-function animate() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle="#444";
-        ctx.fill();
-        p.x+=p.dx;
-        p.y+=p.dy;
-    });
-    requestAnimationFrame(animate);
-}
-animate();
-</script>
-
-</body>
+    <footer
+      class="py-12 sm:py-16 border-t border-slate-800 text-center text-slate-600 text-[10px] sm:text-xs tracking-widest uppercase bg-dark"
+    >
+      <p>© 2026 odaz.dev — Simple & Functional.</p>
+    </footer>
+  </body>
 </html>
